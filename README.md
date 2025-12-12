@@ -22,7 +22,7 @@ npm run dev
 
 
 View the application:
-Open your browser and visit http://localhost:3000
+Open your browser and visit https://quiz-app-proj-ivory.vercel.app/
 
 🛠 Tech Stack Used
 
