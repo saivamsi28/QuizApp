@@ -16,9 +16,9 @@ export default function Page() {
   const currentQuestion = questions[index]
 
   const selectOption = (optionIndex: number) => {
-    const updatedAnswers = [...answers]
-    updatedAnswers[index] = optionIndex
-    setAnswers(updatedAnswers)
+    const updated = [...answers]
+    updated[index] = optionIndex
+    setAnswers(updated)
   }
 
   const score = answers.filter(
@@ -52,7 +52,7 @@ export default function Page() {
   /* ---------------- QUESTION SLIDES ---------------- */
   return (
     <div className="flex items-center justify-center min-h-screen px-6">
-      <div className="w-full max-w-[1100px] rounded-[32px] bg-white/70 backdrop-blur-xl shadow-2xl p-16">
+      <div className="w-full max-w-[1100px] rounded-[32px] bg-white/70 backdrop-blur-xl shadow-2xl p-16 relative">
 
         {/* Header */}
         <h1 className="text-center text-5xl font-serif text-slate-700">
@@ -73,7 +73,40 @@ export default function Page() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -40 }}
             transition={{ duration: 0.4 }}
+            className="relative"
           >
+            {/* Paw + Best of Luck (ONLY Question 1) */}
+            {index === 0 && (
+              <div className="absolute left-6 bottom-6 flex items-end gap-3">
+                {/* Paw */}
+                <motion.img
+                  src="/paw.gif"
+                  alt="Paw"
+                  className="w-20 h-auto"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.6,
+                    ease: "easeOut",
+                  }}
+                />
+
+                {/* Speech Bubble */}
+                <motion.img
+                  src="/best-of-luck.webp"
+                  alt="Best of Luck"
+                  className="w-40 h-auto"
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{
+                    delay: 0.2,
+                    duration: 0.5,
+                    ease: "easeOut",
+                  }}
+                />
+              </div>
+            )}
+
             {/* Question */}
             <div className="mt-12 rounded-xl bg-sky-100 px-8 py-5 text-lg text-center text-slate-700">
               {index + 1}. {currentQuestion.text}
